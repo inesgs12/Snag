@@ -1,0 +1,166 @@
+<div class="margins"></div>
+<h1>Welcome to Snag</h1>
+
+<table class="table table-borderless" style="width:50%">
+  <thead>
+    <tr>
+      <th colspan="4" scope="col"><h5 align="center">GROUND FLOOR</h5></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="4" align="center">Cups:
+        <%if @floors.find { |floor| floor.floor_number == 0}.cups == 3 %>
+          🥛🥛🥛
+        <% elsif @floors.find { |floor| floor.floor_number == 0}.cups == 2 %>
+          🥛
+        <% else %>
+          BYO
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <%if @floors.find { |floor| floor.floor_number == 0}.kegs[0].status == 3 %>
+          <%= image_tag("/img/keg_full.png",height:"125")%>
+        <% elsif @floors.find { |floor| floor.floor_number == 0}.kegs[0].status == 2 %>
+          <%= image_tag("/img/keg_half.png",height:"125")%>
+        <% else %>
+          <%= image_tag("/img/keg_empty.png",height:"125")%>
+        <% end %>
+        <br>
+        <%= @floors.find { |floor| floor.floor_number == 0}.kegs[0].beer.name %>
+      </td>
+      <td align="center">
+        <%if @floors.find { |floor| floor.floor_number == 0}.kegs[1].status == 3 %>
+          <%= image_tag("/img/keg_full.png",height:"125")%>
+        <% elsif @floors.find { |floor| floor.floor_number == 0}.kegs[1].status == 2 %>
+          <%= image_tag("/img/keg_half.png",height:"125")%>
+        <% else %>
+          <%= image_tag("/img/keg_empty.png",height:"125")%>
+        <% end %>
+        <br>
+        <%= @floors.find { |floor| floor.floor_number == 0}.kegs[1].beer.name %>
+      </td>
+      <td align="center">
+        <%if @floors.find { |floor| floor.floor_number == 0}.kegs[2].status == 3 %>
+          <%= image_tag("/img/keg_full.png",height:"125")%>
+        <% elsif @floors.find { |floor| floor.floor_number == 0}.kegs[2].status == 2 %>
+          <%= image_tag("/img/keg_half.png",height:"125")%>
+        <% else %>
+          <%= image_tag("/img/keg_empty.png",height:"125")%>
+        <% end %>
+        <br>
+        <%= @floors.find { |floor| floor.floor_number == 0}.kegs[2].beer.name %>
+      </td>
+
+      <td align="center">
+        <%if @floors.find { |floor| floor.floor_number == 0}.kegs[3].status == 3 %>
+          <%= image_tag("/img/keg_full.png",height:"125")%>
+        <% elsif @floors.find { |floor| floor.floor_number == 0}.kegs[3].status == 2 %>
+          <%= image_tag("/img/keg_half.png",height:"125")%>
+        <% else %>
+          <%= image_tag("/img/keg_empty.png",height:"125")%>
+        <% end %>
+        <br>
+        <%= @floors.find { |floor| floor.floor_number == 0}.kegs[3].beer.name %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-borderless" style="width:50%">
+  <thead>
+    <tr>
+      <th colspan="2" scope="col"><h5 align="center">FLOOR 5</h5></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2" align="center">Cups:
+        <%if @floors.find { |floor| floor.floor_number == 5}.cups == 3 %>
+          🥛🥛🥛
+        <% elsif @floors.find { |floor| floor.floor_number == 5}.cups == 2 %>
+          🥛
+        <% else %>
+          BYO
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <%if @floors.find { |floor| floor.floor_number == 5}.kegs[0].status == 3 %>
+          <%= image_tag("/img/keg_full.png",height:"125")%>
+        <% elsif @floors.find { |floor| floor.floor_number == 5}.kegs[0].status == 2 %>
+          <%= image_tag("/img/keg_half.png",height:"125")%>
+        <% else %>
+          <%= image_tag("/img/keg_empty.png",height:"125")%>
+        <% end %>
+        <br>
+        <%= @floors.find { |floor| floor.floor_number == 5}.kegs[0].beer.name %>
+      </td>
+      <td align="center">
+        <%if @floors.find { |floor| floor.floor_number == 5}.kegs[1].status == 3 %>
+          <%= image_tag("/img/keg_full.png",height:"125")%>
+        <% elsif @floors.find { |floor| floor.floor_number == 5}.kegs[1].status == 2 %>
+          <%= image_tag("/img/keg_half.png",height:"125")%>
+        <% else %>
+          <%= image_tag("/img/keg_empty.png",height:"125")%>
+        <% end %>
+        <br>
+        <%= @floors.find { |floor| floor.floor_number == 5}.kegs[1].beer.name %>
+      </td>
+    </tr>
+    </tr>
+  </tbody>
+</table>
+
+<% if @currently_snagging.nil?%>
+  <h5>OPEN REQUESTS</h5>
+  <br>
+  <ul>
+    <% @open_requests.each do |request| %>
+    <div class="form-row">
+      <div class="form-group col-md-2">
+        <li><%= request.beer.name %> for <%= request.requester.name %>
+      </div>
+      <div class="form-group col-md-2">
+        <%= form_tag(request_path(request), method:"patch") do %>
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <%= hidden_field_tag :id, request.id %>
+          <%= hidden_field_tag "request[snagger_id]", current_user.id %>
+          <%= hidden_field_tag "request[status]", "in progress" %>
+          <%= submit_tag "SNAG IT", class: 'btn btn-secondary btn-sm' %>
+        <% end %>
+      </div>
+        </li>
+      </div>
+    <% end %>
+  </ul>
+
+<% else %>
+  <br>
+  <h4>You're currently snagging <%= @currently_snagging.requester.name %> a <%= @currently_snagging.beer.name %> - they're waiting in <%= @currently_snagging.location.name %>!</h4>
+  <br>
+  <%= form_tag(request_path(@currently_snagging), method:"patch") do %>
+    <%= hidden_field_tag :id, @currently_snagging.id %>
+    <%= hidden_field_tag "request[status]", "closed" %>
+    <%= submit_tag "Beer Delivered", class: 'btn btn-success btn-lg' %>
+  <%end%>
+  <br>
+  <%= form_tag(request_path(@currently_snagging), method:"patch") do %>
+    <%= hidden_field_tag :id, @currently_snagging.id %>
+    <%= hidden_field_tag "request[status]", "open" %>
+    <%= hidden_field_tag "request[snagger_id]", nil %>
+    <%= submit_tag "Sorry, can't Snag it!", class: 'btn btn-danger btn-lg' %>
+  <% end %>
+
+<% end %>
+
+
+
+

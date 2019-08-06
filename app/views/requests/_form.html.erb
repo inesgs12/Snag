@@ -1,0 +1,16 @@
+<div class="margins">
+<p>
+  <%= @requester.name %> is in <%= @location.name %>, waiting anxiously.
+</p>
+<%= form_tag(request_path, method:"patch") do %>
+    <%= hidden_field_tag :id, @request.id %>
+    <%= hidden_field_tag :status, "closed" %>
+    <%= submit_tag "Beer Delivered", class: 'btn btn-success btn-lg' %>
+  <%end%>
+
+  <%= form_tag(request_path, method:"patch") do %>
+    <%= hidden_field_tag :id, @request.id %>
+    <%= hidden_field_tag :status, "open" %>
+    <%= submit_tag "Sorry, can't Snag it!", class: 'btn btn-danger btn-lg' %>
+  <%end%>
+  </div>

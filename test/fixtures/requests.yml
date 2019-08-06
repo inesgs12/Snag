@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  requester_id: 
+  snagger_id: 
+  beer_id: 
+
+two:
+  requester_id: 
+  snagger_id: 
+  beer_id: 

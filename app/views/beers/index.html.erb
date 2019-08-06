@@ -1,0 +1,27 @@
+<h1>Beers</h1>
+
+<% if current_user.currently_requesting %>
+  <p><a href="/requests/new" class="btn btn-info btn-lg" role="button" aria-pressed="true">Request a Beer!</a></p>
+<%end%>
+
+<table class="table table-borderless table table-sm" style="width:50%">
+  <thead>
+    <tr>
+      <th class="w-15"></th>
+      <th class="w-10"></th>
+      <th class="w-5"></th>
+      <th class="w-75"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <% @beers.each do |beer| %>
+      <td><%= image_tag(beer.image)%></td>
+      <td><h5><%= beer.name %></h5></td>
+      <td><%= beer.abv %>% ABV</td>
+      <td><%= beer.description %></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+</div>

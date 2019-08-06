@@ -1,0 +1,40 @@
+<div class="margins">
+<% if @currently_requesting.nil? %>
+  <h1>Want me to bring one back for you?</h1>
+
+<div>
+<%= form_for @request do |f| %>
+  <p>
+    <%= f.label "Pick a beer: ", id:"beer_id" %>
+    <%= f.collection_select :beer_id, @beers.sort, :id, :name %>
+  </p>
+
+  <p>
+    <%= f.label "Where are you? ", id:"location_id" %>
+    <%= f.collection_select :location_id, @locations.sort, :id, :name %>
+  </p>
+
+    <%= f.hidden_field :requester_id, value:current_user.id %>
+    <%= f.hidden_field :status, value:"open" %>
+  <%= f.submit "Submit", :class => 'btn btn-info btn-lg' %>
+
+<% end %>
+</div>
+</div>
+<% else %>
+  <% if @currently_requesting.status == "open" %>
+    <h4>You're currently requesting a <%= @currently_requesting.beer.name %>.  We'll let you know when someone's bringing it!</h4>
+    <%= form_tag request_path(@currently_requesting), method:"patch" do %>
+      <%= hidden_field_tag :id, @currently_requesting.id %>
+      <%= hidden_field_tag "request[status]", "cancelled" %>
+      <%= submit_tag 'Cancel this request', class: 'btn btn-secondary btn-lg' %>
+    <% end %>
+
+  <% elsif @currently_requesting.status == "in progress" %>
+    <h4>Your <%= @currently_requesting.beer.name %> is on the way, courtesy of <%= @currently_requesting.snagger.name %>!  </h4>
+  <% end %>
+<% end %>
+</div>
+
+
+

@@ -1,0 +1,132 @@
+<div class="margins">
+<h1>Leaderboards</h1>
+<br>
+
+  <h5>MOST POPULAR BEERS 🍺</h5>
+  <h5> Our most requested beers 🎉 </h5>
+  <table class="table table-borderless table table-sm" style="width:30%">
+    <thead>
+      <tr>
+        <th scope="col">Beer</th>
+        <th class="text-center">Times Requested</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% Beer.most_popular.sort_by {|beer, count| count }.reverse!.each do |beer| %>
+          <td><%= beer[0].name %></td>
+          <td class="text-center"><%= beer[1] %></td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
+
+ <br>
+
+  <h5>MOST SNAGTASTIC</h5>
+  <h5>These folks snag more than they request 🍻</h5>
+  <table class="table table-borderless table table-sm" style="width:30%">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th class="text-center">Snagged</th>
+        <th class="text-center">Requested</th>
+        <th class="text-right">Ratio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @users.sort_by {|user| user.snag_ratio }.reverse![0..5].each do |user| %>
+          <td><%= user.name %></td>
+          <td class="text-center"><%= user.completed_snags.length %></td>
+          <td class="text-center"><%= user.fulfilled_requests.length %></td>
+          <td class="text-right"><%= '%.2f' % user.snag_ratio %></td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
+
+ <br>
+<h5>MOST PROLIFIC SNAGGERS </h5>
+  <h5>These snaggers have helped out more people 🍻 </h5>
+  <table class="table table-borderless table table-sm" style="width:30%">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th class="text-center">People they've snagged for</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @users.sort_by {|user| user.unique_receivers.length }.reverse![0..5].each do |user|  %>
+          <td><%= user.name %></td>
+          <td class="text-center"><%= user.unique_receivers.length %></td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
+
+ <br>
+<h5>THE MOOCH LIST</h5>
+  <h5>These folks have great friends... 😬</h5>
+  <table class="table table-borderless table table-sm" style="width:30%">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th class="text-center">Snagged</th>
+        <th class="text-center">Requested</th>
+        <th class="text-right">Ratio</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @users.sort_by {|user| user.snag_ratio }[0..5].each do |user| %>
+          <td><%= user.name %></td>
+          <td class="text-center"><%= user.completed_snags.length %></td>
+          <td class="text-center"><%= user.fulfilled_requests.length %></td>
+          <td class="text-right"><%= '%.2f' % user.snag_ratio %></td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
+<br>
+
+<h5>MOST PROLIFIC... well 🍺</h5>
+  <h5>These are our favourite users! 🍻 </h5>
+  <table class="table table-borderless table table-sm" style="width:30%">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th class="text-center">Drinks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @users.sort_by {|user| user.fulfilled_requests.length }.reverse![0..5].each do |user|  %>
+          <td><%= user.name %></td>
+          <td class="text-center"><%= user.fulfilled_requests.length %></td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
+
+  <h5>LEAST RELIABLE 😢</h5>
+  <h5>These snaggers have bailed on the most snags 🤨 </h5>
+  <table class="table table-borderless table table-sm" style="width:30%">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th class="text-center">Bailed Snags</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @users.sort_by {|user| user.bailed_snags.length }.reverse![0..5].each do |user|  %>
+          <td><%= user.name %></td>
+          <td class="text-center"><%= user.bailed_snags.length %></td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
+
+

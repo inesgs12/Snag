@@ -1,0 +1,69 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree
+ *= require_self
+ */
+
+body {
+  background: image-url("beer-wallpaper.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-origin: initial;
+  background-clip: initial;
+  height: 100%;
+  padding-bottom: 200px;
+}
+
+.h1a {
+  display: inline;
+  margin: 10px;
+}
+
+.margins {
+  padding-left: 10px;
+  padding-right: 30px;
+  padding-top: 10px;
+}
+
+.fixed-type-scroller {
+  height: 70vh;
+  overflow-y: auto;
+}
+
+.margins-for-errors {
+  padding-left: 8px;
+  padding-top: 8px;
+}
+
+.w-10 {
+  width: 10% !important;
+}
+
+.w-15 {
+  width: 15% !important;
+}
+
+.w-20 {
+  width: 20% !important;
+}
+
+.w-5 {
+  width: 5% !important;
+}
+
+.rounded-corners-gradient-borders {
+  border: double 2px transparent;
+  border-radius: 120px;
+}

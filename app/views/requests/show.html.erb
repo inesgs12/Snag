@@ -1,0 +1,20 @@
+<div class="margins">
+<h1>Thanks for snagging that!</h1>
+<br>
+<h4>
+  <%= @requester.name %> is in <%= @location.name %>, waiting anxiously.
+</h4>
+<br>
+<%= form_tag(request_path, method:"patch") do %>
+    <%= hidden_field_tag :id, @request.id %>
+    <%= hidden_field_tag "request[status]", "closed" %>
+    <%= submit_tag "Beer Delivered", class: 'btn btn-success btn-lg' %>
+  <%end%>
+  <br>
+  <%= form_tag(request_path, method:"patch") do %>
+    <%= hidden_field_tag :id, @request.id %>
+    <%= hidden_field_tag "request[status]", "bailed" %>
+    <%= submit_tag "Sorry, can't Snag it!", class: 'btn btn-danger btn-lg' %>
+  <%end%>
+  </div>
+
