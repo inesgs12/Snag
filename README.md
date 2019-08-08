@@ -1,6 +1,6 @@
 # Snag
 
-[Live site](https://snagbeer.herokuapp.com)
+[Live site](https://snagbeer.herokuapp.com) (username: ines / password: ines)
 
 [Demo](https://youtu.be/hxw_Ck8Glc4)
 
