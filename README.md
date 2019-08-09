@@ -1,8 +1,8 @@
 # Snag
 
-[Live site](https://snagbeer.herokuapp.com)
+## [Live site](https://snagbeer.herokuapp.com)
 
-[Demo](https://youtu.be/hxw_Ck8Glc4)
+## [Demo](https://youtu.be/hxw_Ck8Glc4)
 
 ## About
 
